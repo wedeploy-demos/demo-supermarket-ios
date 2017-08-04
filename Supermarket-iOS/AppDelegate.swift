@@ -18,10 +18,10 @@ import WeDeploy
 
 struct WeDeployConfig {
 
-	static let authUrl = "https://auth-supermarket.wedeploy.sh"
-	static let dataUrl = "https://data-supermarket.wedeploy.sh"
-	static let emailUrl = "https://email-supermarket.wedeploy.sh"
-	static let webUrl = "https://ui-supermarket.wedeploy.sh"
+	static let authUrl = "https://auth-supermarket.wedeploy.io"
+	static let dataUrl = "https://data-supermarket.wedeploy.io"
+	static let emailUrl = "https://email-supermarket.wedeploy.io"
+	static let webUrl = "https://ui-supermarket.wedeploy.io"
 }
 
 @UIApplicationMain
