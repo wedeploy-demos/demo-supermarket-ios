@@ -59,15 +59,15 @@ class BaseKeyboardViewController: UIViewController {
 		NotificationCenter.default.removeObserver(self)
 	}
 
-	func dismissKeyboard() {
+	@objc func dismissKeyboard() {
 		view?.endEditing(false)
 	}
 
-	func back() {
+ 	@objc func back() {
 		navigationController?.popViewController(animated: true)
 	}
 
-	func notificationHandler(notification: Notification) {
+	@objc func notificationHandler(notification: Notification) {
 		if notification.name == .UIKeyboardWillShow ||
 			notification.name == .UIKeyboardWillChangeFrame {
 

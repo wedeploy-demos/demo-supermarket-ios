@@ -71,7 +71,7 @@ class ProductCell: UICollectionViewCell {
 		}
 	}
 
-	public var onAddToCartClick: ((Void) -> Void)?
+	public var onAddToCartClick: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()

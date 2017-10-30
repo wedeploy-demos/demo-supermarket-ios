@@ -152,7 +152,7 @@ struct WeDeployAPIClient {
 			}
 	}
 
-	func removeCartItem(id: String, completion: @escaping (Void) -> Void) {
+	func removeCartItem(id: String, completion: @escaping () -> Void) {
 		let auth = settings.auth
 
 		WeDeploy.data(WeDeployConfig.dataUrl, authorization: auth)

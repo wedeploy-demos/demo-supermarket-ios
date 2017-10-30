@@ -90,12 +90,12 @@ public class Stepper : UIView {
 		numberLabel.rightAnchor.constraint(equalTo: plusButton.leftAnchor).isActive = true
 	}
 
-	func plusButtonClicked() {
+	@objc func plusButtonClicked() {
 		currentValue += 1
 		onAdd?(currentValue)
 	}
 
-	func minusButtonClicked() {
+	@objc func minusButtonClicked() {
 		if currentValue > 0 {
 			currentValue -= 1
 			onDecrement?(currentValue)

@@ -141,7 +141,7 @@ public class FloatingView : UIView {
 		}
 	}
 
-	open func hide() {
+	@objc open func hide() {
 		animateY(finalY: -100)
 	}
 
@@ -161,7 +161,7 @@ public class FloatingView : UIView {
 			completion: nil)
 	}
 
-	func panView(_ gestureRecognizer: UIPanGestureRecognizer) {
+	@objc func panView(_ gestureRecognizer: UIPanGestureRecognizer) {
 		if gestureRecognizer.state == .ended && self.frame.minX != 20 {
 			UIView.animate(withDuration: 0.3, animations: {
 				var newFrame = self.frame

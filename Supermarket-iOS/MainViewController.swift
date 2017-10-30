@@ -174,8 +174,8 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
 		cartIcon.setTitle(.cart, for: .normal)
 
 		navigationBar.titleTextAttributes = [
-			NSForegroundColorAttributeName : UIColor.white,
-			NSFontAttributeName: UIFont.boldSystemFont(ofSize: 20)
+			NSAttributedStringKey.foregroundColor : UIColor.white,
+			NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 20)
 		]
 		navigationBar.topItem?.title = "Supermarket"
 		navigationBar.barTintColor = .mainColor
@@ -259,7 +259,7 @@ class MainViewController: UIViewController, UICollectionViewDataSource,
 		
 	}
 
-	func profileImageClick() {
+	@objc func profileImageClick() {
 		let logoutAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
 		let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { [weak self] _ in
