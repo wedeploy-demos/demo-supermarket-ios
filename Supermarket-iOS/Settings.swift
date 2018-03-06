@@ -16,16 +16,16 @@ import Foundation
 import WeDeploy
 
 class Settings {
-	static let shared = Settings()
+  static let shared = Settings()
 
-	private(set) var auth: Auth = TokenAuth(token: "")
-	private(set) var user: User?
+  private(set) var auth: Auth = TokenAuth(token: "")
+  private(set) var user: User?
 
-	func saveAuth(auth: Auth) {
-		self.auth = auth
-	}
+  func saveAuth(auth: Auth) {
+    self.auth = auth
+  }
 
-	func saveUser(user: User) {
-		self.user = user
-	}
+  func saveUser(user: User) {
+    self.user = user
+  }
 }

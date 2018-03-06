@@ -16,40 +16,40 @@
 import UIKit
 
 public enum LayoutType {
-	case card
-	case list
-	case collection
+  case card
+  case list
+  case collection
 
-	var icon: String  {
-		switch self {
-		case .card:
-			return .cardLayout
-		case .list:
-			return .listLayout
-		case .collection:
-			return .collectionLayout
-		}
-	}
+  var icon: String  {
+    switch self {
+    case .card:
+      return .cardLayout
+    case .list:
+      return .listLayout
+    case .collection:
+      return .collectionLayout
+    }
+  }
 
-	var nextLayout: LayoutType {
-		switch self {
-		case .card:
-			return .list
-		case .list:
-			return .collection
-		case .collection:
-			return .card
-		}
-	}
+  var nextLayout: LayoutType {
+    switch self {
+    case .card:
+      return .list
+    case .list:
+      return .collection
+    case .collection:
+      return .card
+    }
+  }
 
-	var height: CGFloat {
-		switch self {
-		case .card:
-			return 320
-		case .list:
-			return 132
-		case .collection:
-			return 252
-		}
-	}
+  var height: CGFloat {
+    switch self {
+    case .card:
+      return 320
+    case .list:
+      return 132
+    case .collection:
+      return 252
+    }
+  }
 }

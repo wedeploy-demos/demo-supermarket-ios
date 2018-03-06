@@ -18,25 +18,25 @@ import WeDeploy
 
 struct WeDeployConfig {
 
-	static let authUrl = "https://auth-supermarket.wedeploy.io"
-	static let dataUrl = "https://data-supermarket.wedeploy.io"
-	static let emailUrl = "https://email-supermarket.wedeploy.io"
-	static let webUrl = "https://ui-supermarket.wedeploy.io"
+  static let authUrl = "https://auth-supermarket.wedeploy.io"
+  static let dataUrl = "https://data-supermarket.wedeploy.io"
+  static let emailUrl = "https://email-supermarket.wedeploy.io"
+  static let webUrl = "https://ui-supermarket.wedeploy.io"
 }
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-	var window: UIWindow?
+  var window: UIWindow?
 
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-		return true
-	}
+    return true
+  }
 
-	func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-		WeDeploy.auth(WeDeployConfig.authUrl).handle(url: url)
-		return true
-	}
+  func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    WeDeploy.auth(WeDeployConfig.authUrl).handle(url: url)
+    return true
+  }
 }
 

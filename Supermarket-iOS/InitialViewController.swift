@@ -16,28 +16,28 @@ import UIKit
 
 class InitialViewController: UIViewController {
 
-	var goLogin = false
-	var goSingUp = false
+  var goLogin = false
+  var goSingUp = false
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-		view.backgroundColor = .mainColor
-	}
+    view.backgroundColor = .mainColor
+  }
 
-	public override func viewDidAppear(_ animated: Bool) {
-		if goLogin {
-			goLogin = false
-			performSegue(withIdentifier: "login", sender: nil)
-		}
-		else if goSingUp {
-			goSingUp = false
-			performSegue(withIdentifier: "signup", sender: nil)
-		}
-	}
+  public override func viewDidAppear(_ animated: Bool) {
+    if goLogin {
+      goLogin = false
+      performSegue(withIdentifier: "login", sender: nil)
+    }
+    else if goSingUp {
+      goSingUp = false
+      performSegue(withIdentifier: "signup", sender: nil)
+    }
+  }
 
-	override var preferredStatusBarStyle: UIStatusBarStyle {
-		return .lightContent
-	}
+  override var preferredStatusBarStyle: UIStatusBarStyle {
+    return .lightContent
+  }
 }
 

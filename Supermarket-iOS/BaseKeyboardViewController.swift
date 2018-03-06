@@ -17,79 +17,79 @@ import UIKit
 
 class BaseKeyboardViewController: UIViewController {
 
-	@IBOutlet weak var topConstraint: NSLayoutConstraint!
-	@IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-	@IBOutlet weak var viewToTransform: UIView!
+  @IBOutlet weak var topConstraint: NSLayoutConstraint!
+  @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+  @IBOutlet weak var viewToTransform: UIView!
 
-	@IBOutlet weak var backButton: UIButton?
+  @IBOutlet weak var backButton: UIButton?
 
-	var initialBottomConstraintConstant: CGFloat!
-	var initialTopContraintConstant: CGFloat!
+  var initialBottomConstraintConstant: CGFloat!
+  var initialTopContraintConstant: CGFloat!
 
-	let floatingView = FloatingView()
+  let floatingView = FloatingView()
 
-	override func viewDidLoad() {
-		super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-		view.addSubview(floatingView)
+    view.addSubview(floatingView)
 
-		initialTopContraintConstant = topConstraint.constant
-		initialBottomConstraintConstant = bottomConstraint.constant
+    initialTopContraintConstant = topConstraint.constant
+    initialBottomConstraintConstant = bottomConstraint.constant
 
-		let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-		view.addGestureRecognizer(gesture)
+    let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+    view.addGestureRecognizer(gesture)
 
-		backButton?.addTarget(self, action: #selector(back), for: .touchUpInside)
-	}
+    backButton?.addTarget(self, action: #selector(back), for: .touchUpInside)
+  }
 
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
 
-		NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
-			name: .UIKeyboardWillShow, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
-		 	name: .UIKeyboardWillChangeFrame, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
-			name: .UIKeyboardWillHide, object: nil)
-	}
+    NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
+      name: .UIKeyboardWillShow, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
+       name: .UIKeyboardWillChangeFrame, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler),
+      name: .UIKeyboardWillHide, object: nil)
+  }
 
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
 
-		NotificationCenter.default.removeObserver(self)
-	}
+    NotificationCenter.default.removeObserver(self)
+  }
 
-	@objc func dismissKeyboard() {
-		view?.endEditing(false)
-	}
+  @objc func dismissKeyboard() {
+    view?.endEditing(false)
+  }
 
- 	@objc func back() {
-		navigationController?.popViewController(animated: true)
-	}
+   @objc func back() {
+    navigationController?.popViewController(animated: true)
+  }
 
-	@objc func notificationHandler(notification: Notification) {
-		if notification.name == .UIKeyboardWillShow ||
-			notification.name == .UIKeyboardWillChangeFrame {
+  @objc func notificationHandler(notification: Notification) {
+    if notification.name == .UIKeyboardWillShow ||
+      notification.name == .UIKeyboardWillChangeFrame {
 
-			let rectValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
-			showHideKeyboard(height: rectValue?.cgRectValue.height ?? 0)
-		}
-		else {
-			showHideKeyboard(height: 0)
-		}
-	}
+      let rectValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue
+      showHideKeyboard(height: rectValue?.cgRectValue.height ?? 0)
+    }
+    else {
+      showHideKeyboard(height: 0)
+    }
+  }
 
-	func showHideKeyboard(height: CGFloat) {
+  func showHideKeyboard(height: CGFloat) {
 
-		let transform = height == 0 ? CGAffineTransform.identity : CGAffineTransform(scaleX: 0.7, y: 0.7)
+    let transform = height == 0 ? CGAffineTransform.identity : CGAffineTransform(scaleX: 0.7, y: 0.7)
 
-		self.topConstraint.constant = height == 0 ? initialTopContraintConstant : CGFloat(26)
-		self.bottomConstraint.constant = height == 0 ? initialBottomConstraintConstant! : height + 20
+    self.topConstraint.constant = height == 0 ? initialTopContraintConstant : CGFloat(26)
+    self.bottomConstraint.constant = height == 0 ? initialBottomConstraintConstant! : height + 20
 
-		UIView.animate(withDuration: 0.5) {
-			self.viewToTransform.transform = transform
-			self.view.layoutIfNeeded()
-		}
-	}
+    UIView.animate(withDuration: 0.5) {
+      self.viewToTransform.transform = transform
+      self.view.layoutIfNeeded()
+    }
+  }
 }
 

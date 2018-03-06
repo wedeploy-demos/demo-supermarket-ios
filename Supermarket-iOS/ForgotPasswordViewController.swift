@@ -16,22 +16,22 @@ import UIKit
 
 class ForgotPasswordViewController: BaseKeyboardViewController {
 
-	@IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var emailTextField: UITextField!
 
-	let weDeployClient = WeDeployAPIClient()
+  let weDeployClient = WeDeployAPIClient()
 
-	@IBAction func sendPasswordButtontClick() {
-		guard let email = emailTextField.text else {
-			return
-		}
-		
-		weDeployClient.sendResetPassword(email: email) { success, error in
-			if let _ = success {
-				self.floatingView.show(message: "Email sent", error: false)
-			}
-			else {
-				self.floatingView.show(message: "Failed to send email", error: true)
-			}
-		}
-	}
+  @IBAction func sendPasswordButtontClick() {
+    guard let email = emailTextField.text else {
+      return
+    }
+    
+    weDeployClient.sendResetPassword(email: email) { success, error in
+      if let _ = success {
+        self.floatingView.show(message: "Email sent", error: false)
+      }
+      else {
+        self.floatingView.show(message: "Failed to send email", error: true)
+      }
+    }
+  }
 }

@@ -19,54 +19,54 @@ import WeDeploy
 class SignUpViewController: BaseKeyboardViewController {
 
 
-	@IBOutlet weak var nameTextField: UITextField!
-	@IBOutlet weak var emailTextField: UITextField!
-	@IBOutlet weak var passwordTextField: UITextField!
+  @IBOutlet weak var nameTextField: UITextField!
+  @IBOutlet weak var emailTextField: UITextField!
+  @IBOutlet weak var passwordTextField: UITextField!
 
-	@IBOutlet weak var bottomView: UIView! {
-		didSet {
-			bottomView.addWeDeployShadow()
-		}
-	}
+  @IBOutlet weak var bottomView: UIView! {
+    didSet {
+      bottomView.addWeDeployShadow()
+    }
+  }
 
-	let weDeployClient = WeDeployAPIClient()
+  let weDeployClient = WeDeployAPIClient()
 
-	@IBOutlet weak var signupButton: WeColorButton!
+  @IBOutlet weak var signupButton: WeColorButton!
 
-	@IBAction func signUpButtonClick(_ sender: Any) {
-		guard let name = nameTextField.text, let email = emailTextField.text,
-			let password = passwordTextField.text else { return }
+  @IBAction func signUpButtonClick(_ sender: Any) {
+    guard let name = nameTextField.text, let email = emailTextField.text,
+      let password = passwordTextField.text else { return }
 
-		weDeployClient.register(with: email, password: password, name: name) { user, error in
-			self.finishSignUp(user: user, error: error)
-		}
-	}
+    weDeployClient.register(with: email, password: password, name: name) { user, error in
+      self.finishSignUp(user: user, error: error)
+    }
+  }
 
-	@IBAction func signupWithProviderButtonClick(_ sender: WeProviderButton) {
-		weDeployClient.login(with: sender.provider!, redirectUri: "my-app://") { user, error in
-			self.finishSignUp(user: user, error: error)
-		}
-	}
+  @IBAction func signupWithProviderButtonClick(_ sender: WeProviderButton) {
+    weDeployClient.login(with: sender.provider!, redirectUri: "my-app://") { user, error in
+      self.finishSignUp(user: user, error: error)
+    }
+  }
 
-	@IBAction func goToLoginButtonClick() {
-		_ = self.navigationController?.popViewController(animated: true)
-		let topVC = self.navigationController?.topViewController as? InitialViewController
-		topVC?.goLogin = true
-	}
+  @IBAction func goToLoginButtonClick() {
+    _ = self.navigationController?.popViewController(animated: true)
+    let topVC = self.navigationController?.topViewController as? InitialViewController
+    topVC?.goLogin = true
+  }
 
-	func finishSignUp(user: User?, error: Error?) {
-		if let user = user {
-			print("Signed up \(user)")
+  func finishSignUp(user: User?, error: Error?) {
+    if let user = user {
+      print("Signed up \(user)")
 
-			self.floatingView.show(message: "Sign up correct!", error: false)
+      self.floatingView.show(message: "Sign up correct!", error: false)
 
-			DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-				self.performSegue(withIdentifier: "main", sender: nil)
-			}
-		}
-		else {
-			print("\(error!)")
-			self.floatingView.show(message: "Sign up error", error: true)
-		}
-	}
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        self.performSegue(withIdentifier: "main", sender: nil)
+      }
+    }
+    else {
+      print("\(error!)")
+      self.floatingView.show(message: "Sign up error", error: true)
+    }
+  }
 }
